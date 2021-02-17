@@ -1,41 +1,47 @@
-const gulp = require ('gulp')
-const debug = require('gulp-debug');
-const exec = require('child_process').exec;
-const livereload = require('gulp-livereload');
-const download = require('gulp-download');
+const gulp = require("gulp");
+const debug = require("gulp-debug");
+const exec = require("child_process").exec;
+const livereload = require("gulp-livereload");
+const download = require("gulp-download");
 
 function installAtomicAlpha(cb) {
-    exec('npm i @coveo/atomic@alpha', function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
-        cb(err);
-    });
+  exec("npm i @coveo/atomic@alpha", function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
 }
 
 function getTestPage() {
-    return download('https://raw.githubusercontent.com/coveo/ui-kit/master/packages/atomic/src/index.html')
-	.pipe(gulp.dest('public/'));
+  return download(
+    "https://raw.githubusercontent.com/coveo/ui-kit/master/packages/atomic/src/index.html"
+  ).pipe(gulp.dest("public/"));
 }
 
 function copyResource() {
-    return gulp.src(['./node_modules/@coveo/atomic/dist/atomic/**/*'])
-        .pipe(gulp.dest('./public/build/'))
-        .pipe(debug());
+  return gulp
+    .src(["./node_modules/@coveo/atomic/dist/atomic/**/*"])
+    .pipe(gulp.dest("./public/build/"))
+    .pipe(debug());
 }
 
 function serveStart(cb) {
-    exec('npx serve', function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
-        cb(err);
-    });
+  exec("npx serve", function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
 }
 
 function watch() {
-    livereload.listen();
-    gulp.watch('./testPages/*.html', gulp.series(getTestPage));
-
+  livereload.listen();
+  gulp.watch("./testPages/*.html", gulp.series(getTestPage));
 }
 
 exports.default = gulp.series(installAtomicAlpha, copyResource, getTestPage);
-exports.dev = gulp.series(installAtomicAlpha, copyResource, getTestPage, gulp.parallel(serveStart, watch));
+exports.dev = gulp.series(
+  installAtomicAlpha,
+  copyResource,
+  getTestPage,
+  gulp.parallel(serveStart, watch)
+);
