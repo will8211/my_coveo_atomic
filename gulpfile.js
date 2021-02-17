@@ -2,7 +2,7 @@ const gulp = require ('gulp')
 const debug = require('gulp-debug');
 const exec = require('child_process').exec;
 const livereload = require('gulp-livereload');
-const download = require("gulp-download");
+const download = require('gulp-download');
 
 function installAtomicAlpha(cb) {
     exec('npm i @coveo/atomic@alpha', function (err, stdout, stderr) {
