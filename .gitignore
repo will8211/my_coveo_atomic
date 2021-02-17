@@ -1,2 +1,6 @@
 node_modules/
-testPages/
+public/
+.idea/
+npm-debug.log
+.DS_Store
+/*.env
