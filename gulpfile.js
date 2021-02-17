@@ -39,9 +39,9 @@ function watch() {
 }
 
 exports.default = gulp.series(
-    installAtomicAlpha,
-    copyResource,
-    getTestPage
+  installAtomicAlpha, 
+  copyResource, 
+  getTestPage
 );
 
 exports.dev = gulp.series(
