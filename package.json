@@ -4,14 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app",
-    "postinstall": "node gulpfile.js"
+    "postinstall": "gulp default"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@coveo/atomic": "^0.7.0-alpha.1",
+    "@coveo/atomic": "^0.7.0-alpha.2",
     "child_process": "^1.0.2",
     "gulp": "^4.0.2",
     "gulp-debug": "^4.0.0",
