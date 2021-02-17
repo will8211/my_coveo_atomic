@@ -14,7 +14,7 @@ gulp.task('installAtomicAlpha', function (cb) {
 
 gulp.task('getTestPage', function () {
     return download('https://raw.githubusercontent.com/coveo/ui-kit/master/packages/atomic/src/index.html')
-	.pipe(gulp.dest("public/"));
+	.pipe(gulp.dest('public/'));
 });
 
 gulp.task("copyResource", function () {
