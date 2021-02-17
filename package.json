@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node gulpfile.js"
+    "postinstall": "node gulpfile.js"
   },
   "keywords": [],
   "author": "",
