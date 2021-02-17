@@ -24,7 +24,7 @@ function copyResource() {
 }
 
 function serveStart(cb) {
-    exec('serve', function (err, stdout, stderr) {
+    exec('npx serve', function (err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
         cb(err);
@@ -33,7 +33,7 @@ function serveStart(cb) {
 
 function watch() {
     livereload.listen();
-    gulp.watch('./testPages/*.html', gulp.series('copyTestPages'));
+    gulp.watch('./testPages/*.html', gulp.series(getTestPage));
 
 }
 
