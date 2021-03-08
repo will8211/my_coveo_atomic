@@ -8,7 +8,8 @@
 
   <script type="module" src="/build/atomic.esm.js"></script>
   <script nomodule src="/build/atomic.js"></script>
-  <link rel="stylesheet" href="/build/themes/default.css" />
+  <link rel="stylesheet" href="/themes/default.css" />
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
   <script>
     (async () => {
       await customElements.whenDefined('atomic-search-interface');
@@ -21,20 +22,9 @@
     })();
   </script>
   <style>
-    /* Example on how to customize CSS variables */
     :root {
-      /* --atomic-primary: red; */
-      /* --atomic-secondary: green; */
-      /* background-color: #1E1E1E; */
-      /* --atomic-font-family: "Roboto", "Comic Sans", cursive; */
       font-weight: 300;
-      /* color:#FFFFFF */
-    }
-
-    /* Example on how to customize custom templates CSS parts */
-    atomic-result-list::part(france-title)::before,
-    atomic-result-list::part(france-title)::after {
-      content: '🇫🇷';
+      color: red
     }
   </style>
 </head>
@@ -50,10 +40,12 @@
     </div>
     <div class="flex flex-col lg:flex-row">
       <atomic-facet-manager class="flex flex-row mx-2 mb-2 lg:flex-col lg:w-80">
-        <atomic-facet class="mr-2" field="author" label="Authors" facet-id="my-author-facet" number-of-values=5 facet-sort="alphanumeric"></atomic-facet>
+        <atomic-facet class="mr-2" field="author" label="Authors" facet-id="my-author-facet" number-of-values=5
+          facet-sort="alphanumeric"></atomic-facet>
         <atomic-numeric-facet class="mr-2" field="size" label="File sizes"></atomic-numeric-facet>
         <atomic-date-facet class="mr-2" field="created" label="Created"></atomic-date-facet>
-        <atomic-category-facet class="mr-2" field="geographicalhierarchy" label="World Atlas"></atomic-category-facet>
+        <atomic-category-facet class="mr-2" field="geographicalhierarchy" label="World Atlas" enable-facet-search=true>
+        </atomic-category-facet>
       </atomic-facet-manager>
       <div class="flex-grow pl-2">
         <atomic-breadcrumb-manager></atomic-breadcrumb-manager>
@@ -75,36 +67,39 @@
 
         <atomic-result-list fields-to-include="created,author" class="max-w-full">
           <atomic-result-template id="france-template">
-
-            <hr />
-            <img src="https://www.cia-france.com/media/1558/parcarou1_720x500.jpg" alt="Paris" />
-            <h5 part="france-title">{{title}}</h5>
-            <p>
-              <atomic-result-value value="excerpt"> </atomic-result-value>
-            </p>
-            <a href="{{clickUri}}">More info</a>
-          </atomic-result-template>
-
-          <atomic-result-template id="default">
-            <div class="rounded overflow-hidden border shadow-md mt-2 p-2">
-              <span class="text-blue-600 font-semibold"><a href="{{clickUri}}">{{title}}</a></span>
+            <template>
               <hr />
+              <img src="https://www.cia-france.com/media/1558/parcarou1_720x500.jpg" alt="Paris" />
+              <h5 part="france-title">{{title}}</h5>
               <p>
                 <atomic-result-value value="excerpt"> </atomic-result-value>
               </p>
-              <p>
-                Timestamp: <atomic-result-value value="date"> </atomic-result-value>
-              </p>
-              <p>
-                File size: <atomic-result-value value="size"> </atomic-result-value>
-              </p>
-              <p>
-                Author: <atomic-result-value value="author"> </atomic-result-value>
-              </p>
-              <p>
-                Creation Timestamp: <atomic-result-value value="created"> </atomic-result-value>
-              </p>
-            </div>
+              <a href="{{clickUri}}">More info</a>
+            </template>
+          </atomic-result-template>
+
+          <atomic-result-template id="default">
+            <template>
+              <div class="rounded overflow-hidden border shadow-md mt-2 p-2">
+                <span class="text-blue-600 font-semibold"><a href="{{clickUri}}">{{title}}</a></span>
+                <hr />
+                <p>
+                  <atomic-result-value value="excerpt"> </atomic-result-value>
+                </p>
+                <p>
+                  Timestamp: <atomic-result-value value="date"> </atomic-result-value>
+                </p>
+                <p>
+                  File size: <atomic-result-value value="size"> </atomic-result-value>
+                </p>
+                <p>
+                  Author: <atomic-result-value value="author"> </atomic-result-value>
+                </p>
+                <p>
+                  Creation Timestamp: <atomic-result-value value="created"> </atomic-result-value>
+                </p>
+              </div>
+            </template>
           </atomic-result-template>
 
           <script>

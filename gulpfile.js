@@ -27,8 +27,8 @@ function copyResource() {
 
 function copyThemes() {
   return gulp
-    .src(["./public/build/themes/"])
-    .pipe(gulp.dest("./public"))
+    .src(["./public/build/themes/**/*"])
+    .pipe(gulp.dest("./public/themes"))
     .pipe(debug());
 }
 
