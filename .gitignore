@@ -1,6 +1,7 @@
 node_modules/
 public/index.html
 public/build/
+public/themes/
 .idea/
 npm-debug.log
 .DS_Store

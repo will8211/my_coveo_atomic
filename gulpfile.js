@@ -25,6 +25,13 @@ function copyResource() {
     .pipe(debug());
 }
 
+function copyThemes() {
+  return gulp
+    .src(["./public/build/themes/"])
+    .pipe(gulp.dest("./public"))
+    .pipe(debug());
+}
+
 function serveStart(cb) {
   exec("npx serve", function (err, stdout, stderr) {
     console.log(stdout);
@@ -40,13 +47,15 @@ function watch() {
 
 exports.default = gulp.series(
   installAtomicAlpha, 
-  copyResource, 
+  copyResource,
+  copyThemes,
   getTestPage
 );
 
 exports.dev = gulp.series(
   installAtomicAlpha,
   copyResource,
+  copyThemes,
   getTestPage,
   gulp.parallel(serveStart, watch)
 );
