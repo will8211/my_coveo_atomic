@@ -43,9 +43,18 @@
         <atomic-facet class="mr-2" field="author" label="Authors" facet-id="my-author-facet" number-of-values=5
           facet-sort="alphanumeric"></atomic-facet>
         <atomic-numeric-facet class="mr-2" field="size" label="File sizes"></atomic-numeric-facet>
-        <atomic-date-facet class="mr-2" field="created" label="Created"></atomic-date-facet>
+
+        <atomic-date-facet class="mr-2" facet-id="my-date-facet" field="created" label="Created" generate-automatic-ranges="false">
+          <atomic-date-range start='2005' end='2010'></atomic-date-range>
+          <atomic-date-range start='2006' end='2010' endInclusive=true></atomic-date-range>
+          <atomic-date-range start='2011-01-01' end='2014-12-31'></atomic-date-range>
+          <atomic-date-range end='2017-01-01'></atomic-date-range>
+          <atomic-date-range start='2017-01-01'></atomic-date-range>
+        </atomic-date-facet>
+
         <atomic-category-facet class="mr-2" field="geographicalhierarchy" label="World Atlas" enable-facet-search=true>
         </atomic-category-facet>
+
       </atomic-facet-manager>
       <div class="flex-grow pl-2">
         <atomic-breadcrumb-manager></atomic-breadcrumb-manager>
