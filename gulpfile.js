@@ -14,7 +14,7 @@ function installAtomicAlpha(cb) {
 
 function getTestPage() {
   return download(
-    "https://raw.githubusercontent.com/coveo/ui-kit/master/packages/atomic/src/index.html"
+    "https://raw.githubusercontent.com/coveo/ui-kit/master/packages/atomic/src/pages/index.html"
   ).pipe(gulp.dest("public/"));
 }
 

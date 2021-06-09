@@ -14,10 +14,16 @@
     (async () => {
       await customElements.whenDefined('atomic-search-interface');
       const searchInterface = document.querySelector('#search');
+      // await searchInterface.initialize({
+      //   accessToken: 'xx564559b1-0045-48e1-953c-3addd1ee4457',
+      //   organizationId: 'searchuisamples',
+      // });
       await searchInterface.initialize({
-        accessToken: 'xx564559b1-0045-48e1-953c-3addd1ee4457',
-        organizationId: 'searchuisamples',
+        accessToken: 'xxc28bf431-3f48-48a5-84fe-4ba175e7a015',
+        organizationId: 'wmannarddevteste2hf77di',
+        platformUrl: 'https://platformdev.cloud.coveo.com'
       });
+
       searchInterface.executeFirstSearch();
     })();
   </script>
@@ -44,15 +50,13 @@
           facet-sort="alphanumeric"></atomic-facet>
         <atomic-numeric-facet class="mr-2" field="size" label="File sizes"></atomic-numeric-facet>
 
-        <atomic-date-facet class="mr-2" facet-id="my-date-facet" field="created" label="Created" generate-automatic-ranges="false">
-          <atomic-date-range start='2005' end='2010'></atomic-date-range>
-          <atomic-date-range start='2006' end='2010' endInclusive=true></atomic-date-range>
-          <atomic-date-range start='2011-01-01' end='2014-12-31'></atomic-date-range>
-          <atomic-date-range end='2017-01-01'></atomic-date-range>
+        <atomic-date-facet class="mr-2" facet-id="my-date-facet" field="created" label="Created"
+          generate-automatic-ranges="false">
+          <atomic-date-range start=0 end='2017-01-01'></atomic-date-range>
           <atomic-date-range start='2017-01-01'></atomic-date-range>
         </atomic-date-facet>
 
-        <atomic-category-facet class="mr-2" field="geographicalhierarchy" label="World Atlas" enable-facet-search=true>
+        <atomic-category-facet class="mr-2" field="geographicalhierarchy" label="World Atlas" enable-facet-search=true delimiting-character="|"> <!-- delimiting-character="|" -->
         </atomic-category-facet>
 
       </atomic-facet-manager>
@@ -63,12 +67,12 @@
         <div class="flex justify-between items-end my-2">
           <atomic-query-summary></atomic-query-summary>
           <atomic-sort-dropdown>
-            <atomic-sort-criteria caption="Relevance" criteria="relevancy"></atomic-sort-criteria>
-            <atomic-sort-criteria caption="Most recent" criteria="date descending"></atomic-sort-criteria>
-            <atomic-sort-criteria caption="Oldest" criteria="date ascending"></atomic-sort-criteria>
-            <atomic-sort-criteria caption="QRE" criteria="qre"></atomic-sort-criteria>
-            <atomic-sort-criteria caption="Biggest" criteria="size descending"></atomic-sort-criteria>
-            <atomic-sort-criteria caption="Smallest" criteria="size ascending"></atomic-sort-criteria>
+            <atomic-sort-expression caption="Relevance" expression="relevancy"></atomic-sort-expression>
+            <atomic-sort-expression caption="Most recent" expression="date descending"></atomic-sort-expression>
+            <atomic-sort-expression caption="Oldest" expression="date ascending"></atomic-sort-expression>
+            <atomic-sort-expression caption="QRE" expression="qre"></atomic-sort-expression>
+            <atomic-sort-expression caption="Biggest" expression="size descending"></atomic-sort-expression>
+            <atomic-sort-expression caption="Smallest" expression="size ascending"></atomic-sort-expression>
           </atomic-sort-dropdown>
         </div>
 
